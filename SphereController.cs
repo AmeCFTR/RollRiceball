@@ -5,6 +5,8 @@ using UnityEngine;
 namespace Player {
     public class SphereController : MonoBehaviour {
         public float speed = 20; // 動く速さ 15～20
+        public GameObject Seaweed;
+        public GameObject Scene;
 
         private Rigidbody rb; // Rididbody
 
@@ -15,17 +17,16 @@ namespace Player {
 
         private bool isSpeedReset = false;
         private bool hasWater = true;
+        seaweed sea;
 
         void Start() {
             // Rigidbody を取得
-            rb = GetComponent<Rigidbody>();
-            if (SceneController.isGameReady) {
-                rb.constraints = RigidbodyConstraints.FreezePosition;
-            }
+            FreezeBall();
+            sea = Seaweed.GetComponent<seaweed>();
         }
 
         void Update() {
-            if (SceneController.isGameReady == false) {
+            if (SceneController.isGameReady==false) {
                 rb.constraints = RigidbodyConstraints.None;
             }
             // カーソルキーの入力を取得
@@ -40,6 +41,11 @@ namespace Player {
                 rb.AddForce(movement * speed);
             else
                 rb.AddForce(Vector3.back * 5);
+
+            if (sea.canMove == false)
+            {
+                FreezeBall();
+            }
 
             /*Debug.Log(speed);
             Debug.Log(MAX_Speed);
@@ -74,6 +80,15 @@ namespace Player {
                 MAX_Speed = MAX_Speed / 5;
                 hasWater = false;
                 isSpeedReset = true;
+            }
+        }
+
+        public void FreezeBall()
+        {
+            rb = GetComponent<Rigidbody>();
+            if (SceneController.isGameReady)
+            {
+                rb.constraints = RigidbodyConstraints.FreezeAll;
             }
         }
 

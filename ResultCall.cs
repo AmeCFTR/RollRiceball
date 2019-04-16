@@ -33,6 +33,8 @@ public class ResultCall : MonoBehaviour
         Item.RiceBonus = 0;
         Toriniku.ChickenCounter = 0;
         Salmon.SalmonCounter = 0;
+
+        //PlayerPrefs.DeleteAll(); //スコア削除用
     }
 
     // Update is called once per frame

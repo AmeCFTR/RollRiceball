@@ -5,6 +5,7 @@ using UnityEngine;
 namespace Player {
     public class Gravity : MonoBehaviour {
         Rigidbody rb;
+        public GameObject Scene;
         // Start is called before the first frame update
         void Start()
         {

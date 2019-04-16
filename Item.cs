@@ -12,6 +12,7 @@ using UnityEngine;
         void Awake()
         {
             gameObject.tag = ("Rice");
+        
         }
 
     void Start()
@@ -25,6 +26,7 @@ using UnityEngine;
             {
                 this.transform.parent = hit.gameObject.transform;
                 gameObject.tag = ("Player");
+
                 RiceConuter++;
                 RemoveRiceCounter++;
                 ForCameraRiceCounter++;

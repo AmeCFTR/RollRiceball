@@ -42,15 +42,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (SceneController.isGameReady == false)
+        if (!SceneController.isGameReady)
         {
             positionKizi = UI_kigi.transform.position;
             //Debug.Log(positionKizi);
             positionKizi.y += PheasantSpeed; //キジ速度 0.19～0.26
-            if (sea.canMove == false)
-            {
-                PheasantSpeed = 0;
-            }
 
             UI_kigi.transform.position = positionKizi;
 
@@ -75,8 +71,16 @@ public class GameManager : MonoBehaviour
              //   Debug.Log(UI_kigi.transform.position.y);
                 SceneManager.LoadScene("GameOver");
             }
-       
-            score++;
+
+            if (sea.canMove)
+            {
+                score++;
+            }
+            else if (sea.canMove == false)
+            { 
+                PheasantSpeed = 0;
+            }
+
             scoreText.text = "Score : " + (score*EnhanceMagnification).ToString("f0") + "\n米の数 : " + Item.RiceConuter/*playerObj.transform.childCount*/ + "粒"; //くっついた米粒はRiceBallの子オブジェクトになる 
             resultScore = (int)score * EnhanceMagnification;
         }

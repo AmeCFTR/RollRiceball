@@ -6,10 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class GoCredit : MonoBehaviour
 {
+    public float waitTimeSecond=10;
     // Start is called before the first frame update
     void Start()
     {
-        Invoke("GoCreditScene", 10);
+        Invoke("GoCreditScene", waitTimeSecond);
     }
 
     // Update is called once per frame
